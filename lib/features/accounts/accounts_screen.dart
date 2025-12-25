@@ -4,27 +4,14 @@ import '../../data/models/account_model.dart';
 class AccountsScreen extends StatelessWidget {
   AccountsScreen({super.key});
 
-  final List<AccountModel> accounts = [
-    AccountModel(
-      title: 'حساب اصلی',
-      number: '**** 1234',
-      type: 'جاری',
-      balance: 15400000,
-    ),
-    AccountModel(
-      title: 'حساب پس‌انداز',
-      number: '**** 9876',
-      type: 'پس‌انداز',
-      balance: 10000000,
-    ),
-  ];
+  // ✅ استفاده از داده‌های نمایشی استاندارد از مدل
+  final List<AccountModel> accounts = AccountModel.getMockAccounts();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('حساب‌های من'),
-        centerTitle: true,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -51,6 +38,9 @@ class _AccountCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // استخراج نوع حساب به صورت رشته فارسی
+    final accountTypeString = account.type == AccountType.current ? 'جاری' : 'پس‌انداز';
+
     return Card(
       margin: const EdgeInsets.only(bottom: 12),
       shape: RoundedRectangleBorder(
@@ -58,11 +48,12 @@ class _AccountCard extends StatelessWidget {
       ),
       child: ListTile(
         title: Text(account.title),
-        subtitle: Text('${account.type} • ${account.number}'),
+        subtitle: Text('$accountTypeString • ${account.cardNumber}'),
         trailing: Text(
           '${account.balance.toString()} تومان',
           style: const TextStyle(
             fontWeight: FontWeight.bold,
+            fontSize: 16,
           ),
         ),
       ),
