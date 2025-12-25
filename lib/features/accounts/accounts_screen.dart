@@ -31,6 +31,7 @@ class AccountsScreen extends StatelessWidget {
   }
 }
 
+
 class _AccountCard extends StatelessWidget {
   final AccountModel account;
 
@@ -38,7 +39,6 @@ class _AccountCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // استخراج نوع حساب به صورت رشته فارسی
     final accountTypeString = account.type == AccountType.current ? 'جاری' : 'پس‌انداز';
 
     return Card(
@@ -46,14 +46,24 @@ class _AccountCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
       ),
-      child: ListTile(
-        title: Text(account.title),
-        subtitle: Text('$accountTypeString • ${account.cardNumber}'),
-        trailing: Text(
-          '${account.balance.toString()} تومان',
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 16,
+      child: InkWell( // 👈 InkWell برای اضافه کردن قابلیت کلیک و افکت موج (Ripple Effect)
+        onTap: () {
+          // ناوبری به صفحه جزئیات حساب و ارسال شیء AccountModel
+          Navigator.of(context).pushNamed(
+            '/account_details', // این Route را در مرحله ۳ اضافه می‌کنیم
+            arguments: account, // ارسال مدل حساب به صفحه جدید
+          );
+        },
+        child: ListTile(
+          // ... (کدهای قبلی ListTile)
+          title: Text(account.title),
+          subtitle: Text('$accountTypeString • ${account.cardNumber}'),
+          trailing: Text(
+            '${account.balance} تومان',
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+            ),
           ),
         ),
       ),

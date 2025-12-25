@@ -5,6 +5,7 @@ import 'core/theme/app_theme.dart';
 import 'features/auth/login_screen.dart';
 import 'features/home/home_screen.dart';
 import 'features/accounts/accounts_screen.dart';
+import 'package:bank_app/features/accounts/account_details_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => const LoginScreen(),
         '/home': (context) => const HomeScreen(),
         '/accounts': (context) => AccountsScreen(),
+        '/account_details': (context) => const AccountDetailsScreen(),
       },
     );
   }
