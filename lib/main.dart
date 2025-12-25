@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'core/theme/app_theme.dart';
 import 'features/auth/login_screen.dart';
 import 'features/home/home_screen.dart';
+import 'features/accounts/accounts_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,13 +33,13 @@ class MyApp extends StatelessWidget {
       // ✅ تم برنامه
       theme: AppTheme.lightTheme,
 
-      // ✅ Routeها (طبق فاز ۱)
+      // ✅ Routeها
       initialRoute: '/',
       routes: {
         '/': (context) => const LoginScreen(),
         '/home': (context) => const HomeScreen(),
+        '/accounts': (context) => AccountsScreen(),
       },
     );
   }
 }
-
