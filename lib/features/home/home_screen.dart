@@ -87,7 +87,11 @@ class HomeScreen extends StatelessWidget {
                 _QuickAction(
                   icon: Icons.group,
                   title: 'گروه‌ها',
+                  onTap: () {
+                    Navigator.pushNamed(context, '/groups');
+                  },
                 ),
+
               ],
             ),
           ],
