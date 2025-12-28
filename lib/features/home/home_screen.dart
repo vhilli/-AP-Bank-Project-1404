@@ -5,61 +5,83 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('داشبورد'),
         centerTitle: true,
+        actions: [
+          IconButton(
+            tooltip: 'پروفایل',
+            icon: const Icon(Icons.person_outline),
+            onPressed: () {
+              Navigator.pushNamed(context, '/profile');
+            },
+          ),
+        ],
       ),
-      body: Padding(
+      body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // 👤 خوش‌آمدگویی
             const Text(
-              'سلام، فهیمه 👋',
+              'سلام 👋',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),
-
             const SizedBox(height: 16),
-
-            // 💳 کارت موجودی
             Container(
               width: double.infinity,
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor,
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'موجودی کل',
-                    style: TextStyle(
-                      color: Colors.white70,
-                      fontSize: 14,
-                    ),
+                gradient: LinearGradient(
+                  colors: [
+                    theme.primaryColor,
+                    theme.primaryColor.withOpacity(0.85),
+                  ],
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomLeft,
+                ),
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    color: theme.primaryColor.withOpacity(0.3),
+                    blurRadius: 14,
+                    offset: const Offset(0, 6),
                   ),
-                  SizedBox(height: 8),
+                ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'موجودی کل',
+                        style: TextStyle(color: Colors.white70),
+                      ),
+                      Icon(Icons.visibility, color: Colors.white70),
+                    ],
+                  ),
+                  SizedBox(height: 12),
                   Text(
                     '25,400,000 تومان',
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 22,
+                      fontSize: 26,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
               ),
             ),
-
-            const SizedBox(height: 24),
-
-            // ⚡ دسترسی سریع
+            const SizedBox(height: 28),
             const Text(
               'دسترسی سریع',
               style: TextStyle(
@@ -67,15 +89,17 @@ class HomeScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-
-            const SizedBox(height: 12),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            const SizedBox(height: 16),
+            Wrap(
+              spacing: 20,
+              runSpacing: 20,
               children: [
                 _QuickAction(
                   icon: Icons.swap_horiz,
                   title: 'انتقال وجه',
+                  onTap: () {
+                    Navigator.pushNamed(context, '/transfer');
+                  },
                 ),
                 _QuickAction(
                   icon: Icons.account_balance,
@@ -91,7 +115,13 @@ class HomeScreen extends StatelessWidget {
                     Navigator.pushNamed(context, '/groups');
                   },
                 ),
-
+                _QuickAction(
+                  icon: Icons.person,
+                  title: 'پروفایل',
+                  onTap: () {
+                    Navigator.pushNamed(context, '/profile');
+                  },
+                ),
               ],
             ),
           ],
@@ -101,7 +131,6 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-/// ✅ ویجت دکمه‌های دسترسی سریع (کلیک‌پذیر)
 class _QuickAction extends StatelessWidget {
   final IconData icon;
   final String title;
@@ -115,27 +144,35 @@ class _QuickAction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return InkWell(
-      borderRadius: BorderRadius.circular(16),
       onTap: onTap,
-      child: Column(
-        children: [
-          Container(
-            width: 64,
-            height: 64,
-            decoration: BoxDecoration(
-              color: Theme.of(context).primaryColor.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(16),
+      borderRadius: BorderRadius.circular(50),
+      child: SizedBox(
+        width: 72,
+        child: Column(
+          children: [
+            Container(
+              width: 56,
+              height: 56,
+              decoration: BoxDecoration(
+                color: theme.primaryColor.withOpacity(0.12),
+                shape: BoxShape.circle,
+              ),
+              child: Icon(
+                icon,
+                color: theme.primaryColor,
+              ),
             ),
-            child: Icon(
-              icon,
-              color: Theme.of(context).primaryColor,
-              size: 32,
+            const SizedBox(height: 8),
+            Text(
+              title,
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 12),
             ),
-          ),
-          const SizedBox(height: 8),
-          Text(title),
-        ],
+          ],
+        ),
       ),
     );
   }

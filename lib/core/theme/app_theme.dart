@@ -6,21 +6,14 @@ class AppTheme {
 
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true,
-
-    // 🎨 رنگ‌بندی کلی
     colorScheme: ColorScheme.light(
       primary: AppColors.primary,
       secondary: AppColors.secondary,
       surface: AppColors.surface,
       error: AppColors.error,
     ),
-
     scaffoldBackgroundColor: AppColors.background,
-
-    // ✏️ فونت پیش‌فرض
     fontFamily: 'sans',
-
-    // 🧭 AppBar
     appBarTheme: const AppBarTheme(
       centerTitle: true,
       backgroundColor: AppColors.primary,
@@ -31,8 +24,6 @@ class AppTheme {
         fontWeight: FontWeight.bold,
       ),
     ),
-
-    // 🔘 دکمه‌ها
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.primary,
@@ -50,23 +41,18 @@ class AppTheme {
         ),
       ),
     ),
-
-    // 📝 ورودی‌ها (TextField)
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
       fillColor: Colors.white,
-
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
       ),
-
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
         borderSide: BorderSide(
           color: AppColors.textSecondary,
         ),
       ),
-
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
         borderSide: BorderSide(
@@ -74,7 +60,6 @@ class AppTheme {
           width: 2,
         ),
       ),
-
       labelStyle: const TextStyle(
         color: AppColors.textSecondary,
       ),

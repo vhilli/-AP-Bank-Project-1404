@@ -35,7 +35,6 @@ class SharedGroupsScreen extends StatelessWidget {
   }
 }
 
-/// کارت نمایش اطلاعات یک گروه
 class _GroupCard extends StatelessWidget {
   final GroupModel group;
 
@@ -71,17 +70,13 @@ class _GroupCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // عنوان گروه
               Text(
                 group.title,
                 style: theme.textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
               ),
-
               const SizedBox(height: 12),
-
-              // اطلاعات کلی
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -105,10 +100,7 @@ class _GroupCard extends StatelessWidget {
                   ),
                 ],
               ),
-
               const Divider(height: 24),
-
-              // لیست اعضا
               Text(
                 'اعضا',
                 style: theme.textTheme.titleMedium,

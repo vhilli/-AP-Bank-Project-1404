@@ -7,7 +7,6 @@ class AccountDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // دریافت مدل حساب از آرگومان‌های ناوبری
     final account = ModalRoute.of(context)!.settings.arguments as AccountModel;
 
     return Scaffold(
@@ -18,9 +17,7 @@ class AccountDetailsScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // ۱. ویجت نمایش اطلاعات حساب (بالای صفحه)
             _AccountHeader(account: account),
-
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
               child: Text(
@@ -32,8 +29,6 @@ class AccountDetailsScreen extends StatelessWidget {
                 textAlign: TextAlign.right,
               ),
             ),
-
-            // ۲. لیست تراکنش‌ها (پایین صفحه)
             _TransactionList(transactions: account.transactions),
           ],
         ),
@@ -42,7 +37,6 @@ class AccountDetailsScreen extends StatelessWidget {
   }
 }
 
-/// ویجت نمایش دهنده جزئیات حساب و موجودی
 class _AccountHeader extends StatelessWidget {
   final AccountModel account;
 
@@ -57,7 +51,7 @@ class _AccountHeader extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       margin: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: theme.primaryColor, // استفاده از رنگ اصلی تم
+        color: theme.primaryColor,
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
@@ -87,7 +81,7 @@ class _AccountHeader extends StatelessWidget {
               color: Colors.white,
               fontWeight: FontWeight.bold,
             ),
-            textDirection: TextDirection.ltr, // برای خوانایی بهتر اعداد
+            textDirection: TextDirection.ltr,
           ),
           const SizedBox(height: 15),
           Row(
@@ -109,7 +103,6 @@ class _AccountHeader extends StatelessWidget {
   }
 }
 
-/// ویجت نمایش دهنده لیست تراکنش‌ها
 class _TransactionList extends StatelessWidget {
   final List<TransactionModel> transactions;
 
@@ -122,8 +115,8 @@ class _TransactionList extends StatelessWidget {
     }
 
     return ListView.builder(
-      shrinkWrap: true, // مهم: برای کار کردن داخل SingleChildScrollView
-      physics: const NeverScrollableScrollPhysics(), // مهم: برای جلوگیری از Scroll تودرتو
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
       itemCount: transactions.length,
       itemBuilder: (context, index) {
         final transaction = transactions[index];
@@ -133,7 +126,6 @@ class _TransactionList extends StatelessWidget {
   }
 }
 
-/// ویجت نمایش دهنده یک آیتم تراکنش (نسخه اصلاح شده)
 class _TransactionItem extends StatelessWidget {
   final TransactionModel transaction;
 
@@ -141,12 +133,10 @@ class _TransactionItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // ✅ استفاده از منطق داخل خود مدل
     final sign = transaction.type == TransactionType.deposit ? '+' : '-';
     final dateString = '${transaction.date.year}/${transaction.date.month}/${transaction.date.day}';
 
     return ListTile(
-      // ✅ استفاده از آیکون و رنگ مدل
       leading: Icon(
         transaction.icon,
         color: transaction.color,
@@ -156,7 +146,7 @@ class _TransactionItem extends StatelessWidget {
       trailing: Text(
         '$sign ${transaction.amount} تومان',
         style: TextStyle(
-          color: transaction.color, // ✅ استفاده از رنگ مدل
+          color: transaction.color,
           fontWeight: FontWeight.bold,
           fontSize: 15,
         ),

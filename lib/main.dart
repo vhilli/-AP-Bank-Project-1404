@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'presentation/screens/transfer_money_screen.dart';
 
 import 'core/theme/app_theme.dart';
 import 'features/auth/login_screen.dart';
@@ -7,6 +8,7 @@ import 'features/home/home_screen.dart';
 import 'features/accounts/accounts_screen.dart';
 import 'features/accounts/account_details_screen.dart';
 import 'features/shared_groups/shared_groups_screen.dart';
+import 'presentation/screens/profile/profile_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,8 +21,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-
-      // ✅ پشتیبانی کامل از فارسی و RTL
       locale: const Locale('fa'),
       supportedLocales: const [
         Locale('fa'),
@@ -31,11 +31,7 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-
-      // ✅ تم برنامه
       theme: AppTheme.lightTheme,
-
-      // ✅ Routeها
       initialRoute: '/',
       routes: {
         '/': (context) => const LoginScreen(),
@@ -43,8 +39,8 @@ class MyApp extends StatelessWidget {
         '/accounts': (context) => AccountsScreen(),
         '/account_details': (context) => const AccountDetailsScreen(),
         '/groups': (context) => const SharedGroupsScreen(),
-
-
+        '/profile': (context) => const ProfileScreen(),
+        '/transfer': (context) => const TransferMoneyScreen(),
       },
     );
   }

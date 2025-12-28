@@ -1,5 +1,3 @@
-// lib/data/transaction_model.dart
-
 import 'package:flutter/material.dart';
 
 enum TransactionType { deposit, withdrawal, transfer }
@@ -10,7 +8,7 @@ class TransactionModel {
   final int amount;
   final DateTime date;
   final TransactionType type;
-  final String category; // امتیازی: مثل دستمزد، اجاره، خرید
+  final String category;
 
   TransactionModel({
     required this.id,
@@ -21,7 +19,6 @@ class TransactionModel {
     this.category = 'بدون دسته‌بندی',
   });
 
-  // این تابع رنگ آیکون رو بر اساس نوع تراکنش برمی‌گردونه
   Color get color {
     switch (type) {
       case TransactionType.deposit:
@@ -35,7 +32,6 @@ class TransactionModel {
     }
   }
 
-  // این تابع آیکون مناسب رو برمی‌گردونه
   IconData get icon {
     switch (type) {
       case TransactionType.deposit:

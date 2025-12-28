@@ -8,8 +8,6 @@ class SharedGroupDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
       appBar: AppBar(
         title: Text(group.title),
@@ -19,8 +17,6 @@ class SharedGroupDetailsScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
-            // 👥 اعضا
             const Text(
               'اعضای گروه',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
@@ -32,16 +28,12 @@ class SharedGroupDetailsScreen extends StatelessWidget {
                   .map((e) => Chip(label: Text(e)))
                   .toList(),
             ),
-
             const SizedBox(height: 24),
-
-            // 💰 هزینه‌ها
             const Text(
               'هزینه‌ها',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
-
             Expanded(
               child: ListView.builder(
                 itemCount: group.expenses.length,
@@ -57,8 +49,6 @@ class SharedGroupDetailsScreen extends StatelessWidget {
                 },
               ),
             ),
-
-            // ✅ دکمه‌ها
             Row(
               children: [
                 Expanded(

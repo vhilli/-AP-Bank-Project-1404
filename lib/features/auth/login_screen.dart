@@ -33,7 +33,6 @@ class LoginScreen extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  // فاز اول: ناوبری نمایشی
                   Navigator.pushReplacementNamed(context, '/home');
                 },
                 child: const Text('ورود'),

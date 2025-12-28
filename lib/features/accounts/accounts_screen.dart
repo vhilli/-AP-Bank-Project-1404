@@ -12,7 +12,7 @@ class _AccountsScreenState extends State<AccountsScreen> {
   final List<AccountModel> _allAccounts = AccountModel.getMockAccounts();
 
   String _searchQuery = '';
-  AccountType? _selectedType; // null = همه
+  AccountType? _selectedType;
 
   List<AccountModel> get _filteredAccounts {
     return _allAccounts.where((account) {
@@ -34,16 +34,13 @@ class _AccountsScreenState extends State<AccountsScreen> {
         title: const Text('حساب‌های من'),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // فاز ۱ → فقط نمایشی
-        },
+        onPressed: () {},
         child: const Icon(Icons.add),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            // 🔍 Search
             TextField(
               decoration: const InputDecoration(
                 hintText: 'جستجوی حساب...',
@@ -56,10 +53,7 @@ class _AccountsScreenState extends State<AccountsScreen> {
                 });
               },
             ),
-
             const SizedBox(height: 12),
-
-            // 🧃 Filter
             Row(
               children: [
                 ChoiceChip(
@@ -93,10 +87,7 @@ class _AccountsScreenState extends State<AccountsScreen> {
                 ),
               ],
             ),
-
             const SizedBox(height: 16),
-
-            // 📃 Accounts List
             Expanded(
               child: ListView.builder(
                 itemCount: _filteredAccounts.length,

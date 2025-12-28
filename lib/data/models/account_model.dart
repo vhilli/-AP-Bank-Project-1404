@@ -24,9 +24,7 @@ class AccountModel {
     required this.transactions,
   });
 
-  /// داده‌های نمایشی (Mock Data) برای فاز اول پروژه
   static List<AccountModel> getMockAccounts() {
-    // تراکنش‌های حساب اصلی
     final mainAccountTransactions = [
       TransactionModel(
         id: 'T1001',
@@ -53,7 +51,6 @@ class AccountModel {
       ),
     ];
 
-    // تراکنش‌های حساب پس‌انداز
     final savingAccountTransactions = [
       TransactionModel(
         id: 'T2001',
@@ -95,4 +92,3 @@ class AccountModel {
     ];
   }
 }
-
